@@ -1,6 +1,6 @@
 # cdi-gamelist-doc
 
-**Index of the Philips CD-i disc documentation** — 6 titles, one repository
+**Index of the Philips CD-i disc documentation** — 7 titles, one repository
 each, plus the shared platform checklist they all feed into.
 
 Green Book discs opened from the pre-file-system region up: sector layouts,
@@ -10,7 +10,7 @@ or game assets — only measurements and the code to reproduce them.
 
 | | |
 |---|---|
-| **Shared platform findings** | [**cdi-platformnotes-doc**](https://github.com/vs-sr-dev/cdi-platformnotes-doc) — the canonical checklist all 6 discs feed into |
+| **Shared platform findings** | [**cdi-platformnotes-doc**](https://github.com/vs-sr-dev/cdi-platformnotes-doc) — the canonical checklist all 7 discs feed into |
 | **Disc-by-disc comparison** | [section 10, *Baselines*](https://github.com/vs-sr-dev/cdi-platformnotes-doc/blob/master/cdi-platform-notes.md#10-baselines-so-you-can-tell-signal-from-noise) — it lives there and is **not** copied here, so there is only ever one of it |
 
 ## The discs
@@ -27,6 +27,7 @@ where it does not.
 | [**Merlin's Apprentice**](https://github.com/vs-sr-dev/cdi-merlinsapprentice-doc) | 1995 | Philips Interactive Media of America |  | Cliff Johnson's only CD-i game, pressed with the linker's symbol file still on it: 887 named symbols nobody references |
 | [**The Apprentice**](https://github.com/vs-sr-dev/cdi-theapprentice-doc) | 1994 | The Vision Factory / Philips |  | The CD-i's best action game, and a CD-i Ready disc: the whole thing hides in the 69,150-sector pregap of track 1 |
 | [**Laser Lords**](https://github.com/vs-sr-dev/cdi-laserlords-doc) | 1992 * | Spinnaker Software Corp. and American Interactive Media, Inc. ** |  | The oldest CD-i disc measured here, and the one that moves the shared head-region recording back a year: ten jukebox streams carrying 6 h 34 m of speech |
+| [**A Visit to Sesame Street — Letters**](https://github.com/vs-sr-dev/cdi-avisittosesamestreetletters-doc) | 1991 \*\*\* | American Interactive Media \*\*\*\* |  | The oldest disc measured here: 13,138 DYUV frames of alphabet cartoons decoded at 172 × 108, and a publisher bumper byte-identical to a disc eleven months younger |
 
 \* **Laser Lords, Year.** The volume descriptor's creation field at offset 813
 reads `1992083119164000` and its modification field at 830 reads
@@ -42,6 +43,29 @@ it is in `/COPYRIGHT`, 425 bytes at LBA 2,271, which reads
 `Copyright (c) 1992  Spinnaker Software Corp. and American Interactive Media,
 Inc.`, and the same 104-byte string is inside the executable at
 `cdi_launcher+0x28a`. Two places, one wording.
+
+\*\*\* **A Visit to Sesame Street — Letters, Year.** The volume descriptor's
+creation field at offset 813 reads `1991091316023100` and its modification
+field at 830 reads `1991091411185600`, so the volume was laid out on
+1991-09-13 at 16:02:31 and re-cut nineteen hours later, after the executable
+was rebuilt overnight. The directory records run back to **1991-08-26**, and
+the two oldest files are the hot-spot table and the publisher's bumper player.
+The cell says 1991 because both dates do.
+
+\*\*\*\* **A Visit to Sesame Street — Letters, Studio.** The descriptor's
+publisher field at offset 318 says `American Interactive Media`, and **that is
+the only attribution the disc makes**: there is no `COPYRIGHT`, no `ABSTRACT`
+and no `BIBLIOGRAPHY` — all three name fields are 32 spaces — and the string
+`Philips` does not occur in any of the 673,448,160 bytes of the image. External
+sources give the publisher as *Philips Media* and the developer as *Children's
+Television Workshop*; the disc confirms neither and the conflict is recorded
+rather than resolved in
+[chapter 01](https://github.com/vs-sr-dev/cdi-avisittosesamestreetletters-doc/blob/master/docs/01-what-this-is.md).
+What the disc *does* confirm about CTW is a picture: a 384 × 240 CLUT7 still
+inside both bumper streams reading `CHILDREN'S TELEVISION WORKSHOP`. The
+**Saga** cell is empty on purpose. An external source names a companion title,
+*Numbers* (1991), in the same *A Visit to Sesame Street* series; that disc has
+not been measured here, and a saga of one is not a saga.
 
 ## The write-ups
 
@@ -75,3 +99,7 @@ a plain `|`, because these are no longer table cells.
 ### [Laser Lords](https://github.com/vs-sr-dev/cdi-laserlords-doc)
 
 *Laser Lords* (Spinnaker Software Corp. and American Interactive Media, Inc., published by Philips Interactive Media of America, 1992) — the **oldest CD-i disc in this collection by a full year**, and the one that rewrites the strongest result the CD-i pipelines had. The 5,229,000-byte recording in front of the file system, known on three discs of 1993–95, is **byte-identical here on a volume cut 1992-08-31** — and so are 2,269 of the first 2,270 sectors of the pressing, the only difference being the volume descriptor itself. Ten of its twenty-two real-time files are **jukeboxes** of fourteen to sixteen parallel speech channels descending from channel 15, so **6 h 34 m of dialogue** are permanently in front of the head and switching speaker costs no seek. It carries the first **Level A** audio in the collection — eleven seconds of it, in the publisher's logo, pressed twice for NTSC and PAL with byte-identical soundtracks — 95 DYUV stills proved to the byte at 384 × 240, a sixteen-slot table naming real-time files **that were never pressed**, and 64,629 sectors of a video coding the Green Book does not define. This session also gave the CD-i branch its first six **`sha1-all.txt`** lists, 324 records, and the finding that a file-level hash list is blind to both kinds of sharing this platform actually does
+
+### [A Visit to Sesame Street — Letters](https://github.com/vs-sr-dev/cdi-avisittosesamestreetletters-doc)
+
+*A Visit to Sesame Street — Letters* (American Interactive Media, USA, September 1991) — **the oldest disc in this collection by eleven and a half months**, and the first one made for people who cannot read: no text file of any kind, no symbol table, no `printf`, and two human names in a mastering field as the only credit anywhere. Four painted rooms of Sesame Street, **640 pixels wide** and seen through a 384-pixel window, with a 20 KB **hot-spot table** whose coordinates are half-pixels — proved by drawing thirteen of its rectangles over the street and landing on the letterbox, the bird and the trash can. **13,138 DYUV frames at 172 × 108 and 8 fps** decoded, every one aligned, in **32 animated alphabet cartoons**; the eight-sector frame slot is proved by the fact that all 31 interruptions of the video channel's sector run fall *between* frames. The publisher's two bumper streams are **byte-identical to Laser Lords'** eleven and a half months later — eight streams, 2,246,756 bytes, invisible to every file-level hash list because the two files differ — and inside them is the one place the disc spells out its own abbreviation, as a drawing. The executable it replaced **overnight on 1991-09-14 is still on the pressing**, in 41 sectors the file system no longer points at, and the 5.2 MB recording in front of the file system gets eleven months older: five discs of seven, 1991 to 1995
