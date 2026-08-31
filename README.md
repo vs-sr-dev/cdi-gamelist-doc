@@ -1,6 +1,6 @@
 # cdi-gamelist-doc
 
-**Index of the Philips CD-i disc documentation** — 7 titles, one repository
+**Index of the Philips CD-i disc documentation** — 8 titles, one repository
 each, plus the shared platform checklist they all feed into.
 
 Green Book discs opened from the pre-file-system region up: sector layouts,
@@ -10,7 +10,7 @@ or game assets — only measurements and the code to reproduce them.
 
 | | |
 |---|---|
-| **Shared platform findings** | [**cdi-platformnotes-doc**](https://github.com/vs-sr-dev/cdi-platformnotes-doc) — the canonical checklist all 7 discs feed into |
+| **Shared platform findings** | [**cdi-platformnotes-doc**](https://github.com/vs-sr-dev/cdi-platformnotes-doc) — the canonical checklist all 8 discs feed into |
 | **Disc-by-disc comparison** | [section 10, *Baselines*](https://github.com/vs-sr-dev/cdi-platformnotes-doc/blob/master/cdi-platform-notes.md#10-baselines-so-you-can-tell-signal-from-noise) — it lives there and is **not** copied here, so there is only ever one of it |
 
 ## The discs
@@ -28,6 +28,7 @@ where it does not.
 | [**The Apprentice**](https://github.com/vs-sr-dev/cdi-theapprentice-doc) | 1994 | The Vision Factory / Philips |  | The CD-i's best action game, and a CD-i Ready disc: the whole thing hides in the 69,150-sector pregap of track 1 |
 | [**Laser Lords**](https://github.com/vs-sr-dev/cdi-laserlords-doc) | 1992 * | Spinnaker Software Corp. and American Interactive Media, Inc. ** |  | The oldest CD-i disc measured here, and the one that moves the shared head-region recording back a year: ten jukebox streams carrying 6 h 34 m of speech |
 | [**A Visit to Sesame Street — Letters**](https://github.com/vs-sr-dev/cdi-avisittosesamestreetletters-doc) | 1991 \*\*\* | American Interactive Media \*\*\*\* |  | The oldest disc measured here: 13,138 DYUV frames of alphabet cartoons decoded at 172 × 108, and a publisher bumper byte-identical to a disc eleven months younger |
+| [**Burn:Cycle**](https://github.com/vs-sr-dev/cdi-burncycle-doc) | 1995 \*\*\*\*\* | Trip Media and Philips Media \*\*\*\*\*\* |  \*\*\*\*\*\*\* | A film with a program inside it: 7 directory entries, 99.23 % of the volume in one real-time file, a 69-minute RL7 picture at 384 × 240 and 12.5 fps, and 77:49 of ADPCM the pressing tags as *video* |
 
 \* **Laser Lords, Year.** The volume descriptor's creation field at offset 813
 reads `1992083119164000` and its modification field at 830 reads
@@ -67,6 +68,40 @@ inside both bumper streams reading `CHILDREN'S TELEVISION WORKSHOP`. The
 *Numbers* (1991), in the same *A Visit to Sesame Street* series; that disc has
 not been measured here, and a saga of one is not a saga.
 
+\*\*\*\*\* **Burn:Cycle, Year.** All three date fields of the volume descriptor —
+creation at offset 813, modification at 830 and effective at 864 — read
+`1995052418395600`, the same second: **1995-05-24 at 18:39:56**. That is the
+first disc in this collection where all three agree, and it is a fact about the
+authoring tool rather than the schedule. The directory records disagree with it
+in one direction only: `/BurnCycle.rtr` is stamped 45 minutes earlier at
+17:54:37, and **the three text files are from 1994** — `copyright.txt`
+1994-03-31, `bibliographic.txt` 1994-08-30, `abstract.txt` 1994-08-31 — with
+`copyright.txt` reading, in its entirety, `(c) Trip Media 1994.` The cell says
+1995 because that is when the disc was made; external catalogues say 1994
+because that is what the copyright line says, and both are right about different
+things.
+
+\*\*\*\*\*\* **Burn:Cycle, Studio.** Two places on the disc name it and **for
+the first time in this collection they corroborate each other.** The descriptor's
+publisher field at offset 318 says `Trip Media`; `/bibliographic.txt`, 3,902
+bytes at LBA 2,273, opens `Burn:Cycle` / `From Trip Media and Philips Media`. The
+data-preparer field at offset 446 says `Graham Deane`, and the same credit roll
+names him twice — `Graham Deane — Runtime and Production Software` and
+`Graham Deane — Technical Director` — which is the first time a preparer field
+here has been confirmed by the disc's own credits. That roll is 113 name-shaped
+strings, about 98 of them people, and it is the largest in the collection by a
+factor of three.
+
+\*\*\*\*\*\*\* **Burn:Cycle, Saga.** Empty on purpose, and the filename is why it
+had to be checked. The dump is called `Burn-Cycle (Italy) (Il Gioco)` — *the
+game* — which reads like a disc designation distinguishing one disc of a set
+from another. It is not: external sources give the Italian box line as *"Il Gioco
+che ti Manda Fuori"*, so `(Il Gioco)` is a fragment of an advertising slogan.
+A companion object does exist and it is **a Red Book soundtrack album** — Discogs
+catalogues *Simon Boswell and Chris Whitten — Burn:Cycle* as a CDi + CD pairing,
+and the Italian release shipped in two configurations, with and without it. An
+audio CD is not a second title, so **a saga of one is not a saga**.
+
 ## The write-ups
 
 Each entry below is the write-up that used to sit in the
@@ -103,3 +138,7 @@ a plain `|`, because these are no longer table cells.
 ### [A Visit to Sesame Street — Letters](https://github.com/vs-sr-dev/cdi-avisittosesamestreetletters-doc)
 
 *A Visit to Sesame Street — Letters* (American Interactive Media, USA, September 1991) — **the oldest disc in this collection by eleven and a half months**, and the first one made for people who cannot read: no text file of any kind, no symbol table, no `printf`, and two human names in a mastering field as the only credit anywhere. Four painted rooms of Sesame Street, **640 pixels wide** and seen through a 384-pixel window, with a 20 KB **hot-spot table** whose coordinates are half-pixels — proved by drawing thirteen of its rectangles over the street and landing on the letterbox, the bird and the trash can. **13,138 DYUV frames at 172 × 108 and 8 fps** decoded, every one aligned, in **32 animated alphabet cartoons**; the eight-sector frame slot is proved by the fact that all 31 interruptions of the video channel's sector run fall *between* frames. The publisher's two bumper streams are **byte-identical to Laser Lords'** eleven and a half months later — eight streams, 2,246,756 bytes, invisible to every file-level hash list because the two files differ — and inside them is the one place the disc spells out its own abbreviation, as a drawing. The executable it replaced **overnight on 1991-09-14 is still on the pressing**, in 41 sectors the file system no longer points at, and the 5.2 MB recording in front of the file system gets eleven months older: five discs of seven, 1991 to 1995
+
+### [Burn:Cycle](https://github.com/vs-sr-dev/cdi-burncycle-doc)
+
+*Burn:Cycle* (Trip Media / Philips Media, UK, May 1995) — **a film with a program inside it**, and the first object in this collection that arrived as a **CHD** rather than an image. **Seven directory entries**, no directories, and **99.23 % of the volume space in one real-time file**: sixty-nine minutes and fifty-six seconds of disc carrying a picture, its soundtrack and the game's own logic past the head at 1×, with **0.68 % padding** — thirty-five times lower than anything else here. The film decodes: **RL7 at 384 × 240, 55,368 frames at 12.5 fps**, 99.977 % of 13,301,593 lines ending exactly on the boundary, and the geometry proved four ways — the bit-7 disproof of the CLUT7 the coding byte claims, the exact-line-end count saturating at 384, vertical autocorrelation at 240, and the **TRIGGER submode bit turning out to be the frame clock**, one per frame, matching the frame count exactly on 857 of 1,025 records. The census says **zero audio sectors** on a disc with a famous Simon Boswell soundtrack, and the census is right and completely misleading: **21,888 sectors carry Green Book ADPCM with the VIDEO type bit set**, found by running section 8's sound-group structure test over every stream rather than only over the ones the type bits call audio — **77 minutes and 49 seconds** of it. The game ships as **353 named, compiled 68000 script objects interleaved with the film they belong to**, one per viewpoint, which is why a 92,880-byte module runs a two-hour game; the linker's **symbol table is still on the pressing**, 633 symbols in three tables whose headers bind each to its module by CRC-24, and it names the whole engine — a stream manager, a video manager that writes the MCD212's control tables by name, and 164 script opcodes behind a `dispatch`. And the box says *Italian*: **twenty-two strings in thirty-four places say so too**, in two encodings, four of them a dirty-disc panic screen stored bottom-line-first inside the executable and eighteen inside the stream — where nobody had looked, because the search had been for the word `italiano` rather than for the language
