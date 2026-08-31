@@ -31,8 +31,8 @@ where it does not.
 \* **Laser Lords, Year.** The volume descriptor's creation field at offset 813
 reads `1992083119164000` and its modification field at 830 reads
 `1992090914254400`, so the volume was laid out on 1992-08-31 and cut on
-1992-09-09. The directory records run back to **1991-08-13**, and the three
-oldest files are the publisher's bumper and its player. The cell says 1992
+1992-09-09. The directory records run back to **1991-08-13**, and the two
+oldest files are the publisher's bumper player and its data module. The cell says 1992
 because that is when the *disc* was made; 1991 is when two of its components
 were.
 
